@@ -24,6 +24,7 @@ Vous aurez également besoin d’un gestionnaire de paquets, tel que npm.
 ### Partie Symfony
 
 Lancez l'IDE de votre choix (de préférence phpstorm), liez votre base de données dans votre IDE avec vos identifiants et mot de passe personnel.
+Pensez à modifier le fichier ".env" pour modifier l'accès à la base de données.
 Il faut que votre IDE supporte le framework Symfony.
 
 Lancer un terminal et créer la database
@@ -52,7 +53,7 @@ symfony server:start
 
 ### Partie VueJS
 
-Lancer l'IDE de votre choix (de préférence VSCode)
+Lancer l'IDE de votre choix
 
 Lancer un terminal et installer les dépendances
 
@@ -60,10 +61,16 @@ Lancer un terminal et installer les dépendances
 npm install
 ```
 
-Creer le build (vérifier que le site est bien lancé sur l'adresse "http://localhost:5173")
+Creer le build
 
 ```
 npm run build
+```
+
+Lancer le serveur (vérifier que le site est bien lancé sur l'adresse "http://localhost:5173")
+
+```
+npm run dev
 ```
 
 ## Utilisation

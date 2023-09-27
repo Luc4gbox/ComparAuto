@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="register">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        <h1>Bienvenue sur ComparAuto</h1>
+
+        {{ form_start(registrationForm, {'attr': {'class': 'form-register'}}) }}
+        {{ form_row(registrationForm.nom, {'attr': {'placeholder': 'Renseignez votre nom'}}) }}
+        {{ form_row(registrationForm.prenom, {'attr': {'placeholder': 'Renseignez votre prénom'}}) }}
+        {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Renseignez votre adresse mail'}}) }}
+        {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe', 'attr': {'placeholder': 'Renseignez votre mot de passe'}}) }}
+
+        <button type="submit" class="btn">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

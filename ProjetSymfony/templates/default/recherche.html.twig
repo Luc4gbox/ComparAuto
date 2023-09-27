@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+    <p class="marge"></p>
+    <section class="recherche">
+        {% if query %}
+            <h2>Résultats de recherche pour "{{ query }}"</h2>
+        {% else %}
+            <h2>Voici les résultats de votre recherche</h2>
+        {% endif %}
+        <div class="annonces-container">
+            {% for annonce in annonces %}
+                <div class="annonce" data-id="{{ annonce.id }}">
+                    <h3>{{ annonce.titre }}</h3>
+                    <p>{{ annonce.prix == annonce.prix|round ? annonce.prix|round : annonce.prix|format('%.2f') }} €</p>
+                    <p>Mise en ligne le : {{ annonce.createdAt|date('d/m/Y') }}</p>
+                    <img src="{{ asset('images/annonces/' ~ annonce.image) }}" alt="{{ annonce.nomVoiture }}"/>
+                    <a href="{{ path('app_comparateur', {'annonce_id': annonce.id}) }}">Comparer cette annonce</a>
+                </div>
+            {% else %}
+                <p>Aucune annonce ne correspond à votre recherche.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var annonces = document.querySelectorAll('.annonce');
+
+            annonces.forEach(function (annonce) {
+                annonce.addEventListener('click', function (event) {
+                    var annonceId = annonce.getAttribute('data-id');
+                    var url = "{{ path('app_annonce_show', {'id': 'annonce_id'}) }}".replace('annonce_id', annonceId);
+                    window.location.href = url;
+                });
+            });
+        });
+    </script>
+    
+{% endblock %}

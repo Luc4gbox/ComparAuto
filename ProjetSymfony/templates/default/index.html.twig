@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% set is_homepage = true %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="divBody">
+    <p class="titreIndex">Bienvenue sur ComparAuto, le site idéal pour trouver la bonne voiture</p>
+    <a href="http://localhost:5173/" class="Api">Liste des Constructeurs</a>
+    <section>
+        <form action="{{ path('app_recherche') }}" method="get" class="form-recherche">
+            <input type="text" name="query" placeholder="Que recherchez-vous ?" />
+
+            <select name="constructeur">
+                <option value="">Tous les constructeurs</option>
+                {% for constructeur in constructeurs %}
+                    <option value="{{ constructeur.id }}">{{ constructeur.nom }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="categorie">
+                <option value="">Toutes les catégories</option>
+                {% for categorie in categories %}
+                    <option value="{{ categorie.id }}">{{ categorie.nom }}</option>
+                {% endfor %}
+            </select>
+
+            <div class="filtrePrix">
+                <label for="min_price">Prix min:</label>
+                <input type="number" name="min_price" id="min_price" min="0" step="1000" />
+
+                <label for="max_price">Prix max:</label>
+                <input type="number" name="max_price" id="max_price" min="0" step="1000" />
+            </div>
+            <div class="boutonFormRecherche">
+                <button type="submit">Rechercher</button>
+            </div>
+        </form>
+
+        <a class="addannoce2" href="{{ path('app_annonce_new') }}">Publier une annonce <span class="material-icons">add</span></a>
+
+    </section>
+
+
+    <section>
+        <h2 class="derniereAnnonce"><span class="material-icons">announcement</span>Dernières annonces :</h2>
+        <div class="annonces-container">
+            {% for annonce in annonces %}
+
+                <div class="annonce" data-id="{{ annonce.id }}">
+                    <h3>{{ annonce.titre }}</h3>
+                    <p>{{ annonce.prix == annonce.prix|round ? annonce.prix|round : annonce.prix|format('%.2f') }} €</p>
+                    <p>Mise en ligne le : {{ annonce.createdAt|date('d/m/Y') }}</p>
+                    <img src="{{ asset('images/annonces/' ~ annonce.image) }}" alt="{{ annonce.nomVoiture }}" />
+                    <a href="{{ path('app_comparateur', {'annonce_id': annonce.id}) }}">Comparer cette annonce</a>
+                </div>
+            {% else %}
+                <p>Aucune annonce récente.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var annonces = document.querySelectorAll('.annonce');
+
+                annonces.forEach(function (annonce) {
+                    annonce.addEventListener('click', function (event) {
+                        var annonceId = annonce.getAttribute('data-id');
+                        var url = "{{ path('app_annonce_show', {'id': 'annonce_id'}) }}".replace('annonce_id', annonceId);
+                        window.location.href = url;
+                    });
+                });
+            });
+        </script>
+
+    </div>
+
+
+{% endblock %}

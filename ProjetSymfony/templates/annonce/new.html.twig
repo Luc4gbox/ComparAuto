@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <p class="marge"></p>
+    <div class="new-annonce">
+        <h1>Créer une nouvelle annonce</h1>
+
+        {{ include('annonce/_form.html.twig', {'attr': {'class': 'form-add'}}) }}
+
+        <a href="{{ path('app_annonce') }}" class="back-btn">Retour à mes annonces</a>
+    </div>
+{% endblock %}

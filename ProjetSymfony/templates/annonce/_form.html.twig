@@ -1,0 +1,106 @@
+{{ form_start(form) }}
+<div class="form-row">
+    {{ form_label(form.titre) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.prix) }}
+    {{ form_widget(form.prix, {
+        'attr': {
+            'class': 'form-input',
+            'oninvalid': "this.setCustomValidity('Veuillez entrer un nombre valide pour la prix du véhicule.')",
+            'oninput': "this.setCustomValidity('')",
+            'pattern': '\\d*(\\.\\d{0,2})?'
+        }}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.constructeur) }}
+    {{ form_widget(form.constructeur, {'attr': {'class': 'form-select'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.categorie) }}
+    {{ form_widget(form.categorie, {'attr': {'class': 'form-select'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.nom_voiture) }}
+    {{ form_widget(form.nom_voiture, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.annee) }}
+    {{ form_widget(form.annee, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.kilometrage) }}
+    {{ form_widget(form.kilometrage, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.couleur) }}
+    {{ form_widget(form.couleur, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.type_carburant) }}
+    {{ form_widget(form.type_carburant) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.motorisation) }}
+    {{ form_widget(form.motorisation, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.puissance) }}
+    {{ form_widget(form.puissance, {
+        'attr': {
+            'class': 'form-input',
+            'oninvalid': "this.setCustomValidity('Veuillez entrer un nombre valide pour la puissance.')",
+            'oninput': "this.setCustomValidity('')",
+            'pattern': '\\d+'
+        }
+    }) }}
+    {{ form_errors(form.puissance) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.poidsTotal) }}
+    {{ form_widget(form.poidsTotal, {
+        'attr': {
+            'class': 'form-input',
+            'oninvalid': "this.setCustomValidity('Veuillez entrer un nombre valide pour la poids du véhicule.')",
+            'oninput': "this.setCustomValidity('')",
+            'pattern': '\\d*(\\.\\d{0,2})?'
+        }}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.stockageCoffre) }}
+    {{ form_widget(form.stockageCoffre, {
+        'attr': {
+            'class': 'form-input',
+            'oninvalid': "this.setCustomValidity('Veuillez entrer un nombre valide pour la stockage du coffre.')",
+            'oninput': "this.setCustomValidity('')",
+            'pattern': '\\d*(\\.\\d{0,2})?'
+        }}) }}
+</div>
+
+<div class="form-row">
+    {{ form_label(form.image) }}
+    {{ form_widget(form.image, {'attr': {'class': 'form-input'}}) }}
+</div>
+
+<div class="form-row">
+    <button class="btn save-btn">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

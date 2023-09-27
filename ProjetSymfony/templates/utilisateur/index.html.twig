@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% set is_profilpage = true %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="profil">
+        <div class="profil-content">
+            <p>Nom : {{ user.nom }}</p>
+            <p>Prenom : {{ user.prenom }}</p>
+            <p>Email : {{ user.email }}</p>
+            <a href="{{ path('app_utilisateur_edit') }}" >Modifier</a>
+        </div>
+    </div>
+{% endblock %}

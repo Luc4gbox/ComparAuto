@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="register">
+        <h1 class="register-title">Modifier l'utilisateur</h1>
+
+        {{ include('utilisateur/_form.html.twig', {'button_label': 'Modifier', 'attr': {'class': 'form-register'}}) }}
+
+        <a href="{{ path('app_profil') }}" class="edit-btn">Retour au profil</a>
+
+        {{ include('utilisateur/_delete_form.html.twig', {'utilisateur': utilisateur}) }}
+    </div>
+{% endblock %}

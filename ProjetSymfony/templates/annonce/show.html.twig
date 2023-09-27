@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <p class="marge"></p>
+    <div class="une-annonce">
+        <div class="annonce-content">
+            <h1>{{ annonce.titre }}</h1>
+            <p><span class="bold">Description : </span>{{ annonce.description }}</p>
+            <p><span class="bold">Constructeur : </span>{{ annonce.constructeur.nom }}</p>
+            <p><span class="bold">Catégorie : </span>{{ annonce.categorie.nom }}</p>
+            <p><span class="bold">Prix : </span>{{ annonce.prix }} €</p>
+
+            <p><span class="bold">Kilométrage : </span>{{ annonce.kilometrage }}</p>
+            <p><span class="bold">Année : </span>{{ annonce.annee }}</p>
+            <p><span class="bold">Type de carburant : </span>{{ annonce.typecarburant }}</p>
+            <p><span class="bold">Motorisation : </span>{{ annonce.motorisation }}</p>
+            <p><span class="bold">Puissance en ch : </span>{{ annonce.puissance }}</p>
+            <p><span class="bold">Couleur : </span>{{ annonce.couleur }}</p>
+            <p><span class="bold">Poids Total : </span>{{ annonce.poidsTotal }}</p>
+            <p><span class="bold">Capacité de stockage du coffre en L : </span>{{ annonce.stockageCoffre }}</p>
+
+            <p><span class="bold">Date de création: </span>{{ annonce.createdAt|date('d/m/Y H:i') }}</p>
+
+        </div>
+        <div class="annonce-image">
+            <img src="{{ asset('images/annonces/' ~ annonce.image) }}" alt="{{ annonce.nomVoiture }}"/>
+        </div>
+    </div>
+    <button class="btn-retour" onclick="goBack()">Retour</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+    </script>
+
+{% endblock %}

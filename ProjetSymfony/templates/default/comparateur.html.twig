@@ -1,0 +1,278 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <p class="marge"></p>
+    <div class="comparateur">
+
+        <section class="annonces-section">
+            <div class="comparator-container">
+                <div class="annonce_ annonce-1">
+                    {% if annonce %}
+                        <div class="annonce-info">
+                            <h3>{{ annonce.titre }}</h3>
+                            <p>Prix : {{ annonce.prix }} €</p>
+                            <p>Kilométrage : {{ annonce.kilometrage }}</p>
+                            <p>Année : {{ annonce.annee }}</p>
+                            <p>Puissance : {{ annonce.puissance }}</p>
+                        </div>
+                        <div class="annonce-image">
+                            <img src="{{ asset('images/annonces/' ~ annonce.image) }}" alt="{{ annonce.nomVoiture }}"/>
+                        </div>
+                    {% else %}
+                        <p>Aucune annonce sélectionnée.</p>
+                    {% endif %}
+                </div>
+
+                <div class="annonce_ annonce-2">
+
+                    {% if annonce2 %}
+                        <div class="annonce-info">
+                            <h3>{{ annonce2.titre }}</h3>
+                            <p>Prix : {{ annonce2.prix }} €</p>
+                            <p>Kilométrage : {{ annonce2.kilometrage }}</p>
+                            <p>Année : {{ annonce2.annee }}</p>
+                            <p>Puissance : {{ annonce2.puissance }}</p>
+                        </div>
+                        <div class="annonce-image">
+                            <img src="{{ asset('images/annonces/' ~ annonce2.image) }}"
+                                 alt="{{ annonce2.nomVoiture }}"/>
+                        </div>
+                    {% else %}
+                        <p>Veuillez sélectionner une deuxième annonce à comparer.</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="form-section">
+            <div class="form-container">
+                <form method="get" action="{{ path('app_comparateur', {'annonce_id': annonce.id}) }}">
+                    <input list="annonces-datalist" name="annonce_id" placeholder="Rechercher une annonce"/>
+                    <datalist id="annonces-datalist">
+                        {% for annonce in annonces %}
+                            <option value="{{ annonce.titre }}">{{ annonce.titre }}</option>
+                        {% endfor %}
+                    </datalist>
+                    <button type="submit">Comparer</button>
+                </form>
+            </div>
+        </section>
+
+
+        <div class="graph-container">
+            {% if annonce and annonce2 %}
+
+                <div class="annonce-info">
+                    <h3>{{ annonce.titre }}</h3>
+                    <p><span class="bold">Prix</span> <span id="annonce1-prix">{{ annonce.prix }} €</span></p>
+                    <p><span class="bold">Kilométrage</span> <span id="annonce1-kilometrage">{{ annonce.kilometrage }} km</span></p>
+                    <p><span class="bold">Année</span> : <span id="annonce1-annee">{{ annonce.annee }}</span></p>
+                    <p><span class="bold">Puissance en ch</span> : <span id="annonce1-puissance">{{ annonce.puissance }}</span></p>
+                    <p><span class="bold">Poids Total</span> : <span id="annonce1-poidsTotal">{{ annonce.poidsTotal }}</span></p>
+                    <p><span class="bold">Stockage coffre en L</span> : <span id="annonce1-stockageCoffre">{{ annonce.stockageCoffre }}</span></p>
+                </div>
+
+                <canvas id="comparateur"></canvas>
+
+                <div class="annonce-info">
+                    <h3>{{ annonce2.titre }}</h3>
+                    <p><span class="bold">Prix</span> : <span id="annonce2-prix">{{ annonce2.prix }} €</span></p>
+                    <p><span class="bold">Kilométrage</span> : <span id="annonce2-kilometrage">{{ annonce2.kilometrage }} km</span></p>
+                    <p><span class="bold">Année</span> : <span id="annonce2-annee">{{ annonce2.annee }}</span></p>
+                    <p><span class="bold">Puissance en ch</span> : <span id="annonce2-puissance">{{ annonce2.puissance }}</span></p>
+                    <p><span class="bold">Poids Total</span> : <span id="annonce2-poidsTotal">{{ annonce2.poidsTotal }}</span></p>
+                    <p><span class="bold">Stockage coffre en L</span> : <span id="annonce2-stockageCoffre">{{ annonce2.stockageCoffre }}</span></p>
+                </div>
+
+                <script>
+                    // Récupérez les éléments span avec les identifiants uniques
+                    const annonce1Prix = document.getElementById('annonce1-prix');
+                    const annonce2Prix = document.getElementById('annonce2-prix');
+                    const annonce1Kilometrage = document.getElementById('annonce1-kilometrage');
+                    const annonce2Kilometrage = document.getElementById('annonce2-kilometrage');
+                    const annonce1Puissance = document.getElementById('annonce1-puissance');
+                    const annonce2Puissance = document.getElementById('annonce2-puissance');
+                    const annonce1Annee = document.getElementById('annonce1-annee');
+                    const annonce2Annee = document.getElementById('annonce2-annee');
+                    const annonce1PoidsTotal = document.getElementById('annonce1-poidsTotal');
+                    const annonce2PoidsTotal = document.getElementById('annonce2-poidsTotal');
+                    const annonce1StockageCoffre = document.getElementById('annonce1-stockageCoffre');
+                    const annonce2StockageCoffre = document.getElementById('annonce2-stockageCoffre');
+
+                    // Comparez les valeurs des deux annonces
+                    const annonce1PrixValue = {{ annonce.prix }};
+                    const annonce2PrixValue = {{ annonce2.prix }};
+                    const annonce1KilometrageValue = {{ annonce.kilometrage }};
+                    const annonce2KilometrageValue = {{ annonce2.kilometrage }};
+                    const annonce1PuissanceValue = {{ annonce.puissance }};
+                    const annonce2PuissanceValue = {{ annonce2.puissance }};
+                    const annonce1AnneeValue = {{ annonce.annee }};
+                    const annonce2AnneeValue = {{ annonce2.annee }};
+                    const annonce1PoidsTotalValue = {{ annonce.poidsTotal }};
+                    const annonce2PoidsTotalValue = {{ annonce2.poidsTotal }};
+                    const annonce1StockageCoffreValue = {{ annonce.stockageCoffre }};
+                    const annonce2StockageCoffreValue = {{ annonce2.stockageCoffre }};
+
+                    applyColorPlusGrandQue(annonce1Prix, annonce2Prix, annonce1PrixValue, annonce2PrixValue);
+                    applyColorPlusGrandQue(annonce1Kilometrage, annonce2Kilometrage, annonce1KilometrageValue, annonce2KilometrageValue);
+                    applyColorMoinsGrandQue(annonce1Annee, annonce2Annee, annonce1AnneeValue, annonce2AnneeValue);
+                    applyColorMoinsGrandQue(annonce1Puissance, annonce2Puissance, annonce1PuissanceValue, annonce2PuissanceValue);
+                    applyColorPlusGrandQue(annonce1PoidsTotal, annonce2PoidsTotal, annonce1PoidsTotalValue, annonce2PoidsTotalValue);
+                    applyColorMoinsGrandQue(annonce1StockageCoffre, annonce2StockageCoffre, annonce1StockageCoffreValue, annonce2StockageCoffreValue);
+
+
+                    function applyColorPlusGrandQue(element1, element2, value1, value2) {
+                        if (value1 < value2) {
+                            element1.classList.add('green');
+                            element2.classList.add('red');
+                        } else if (value1 > value2) {
+                            element1.classList.add('red');
+                            element2.classList.add('green');
+                        } else {
+                            element1.classList.add('green');
+                            element2.classList.add('green');
+                        }
+                    }
+
+                    function applyColorMoinsGrandQue(element1, element2, value1, value2) {
+                        if (value1 > value2) {
+                            element1.classList.add('green');
+                            element2.classList.add('red');
+                        } else if (value1 < value2) {
+                            element1.classList.add('red');
+                            element2.classList.add('green');
+                        } else {
+                            element1.classList.add('green');
+                            element2.classList.add('green');
+                        }
+                    }
+                </script>
+
+
+
+                <script>
+
+                    // Sélectionnez l'élément canvas
+                    const ctx = document.getElementById('comparateur').getContext('2d');
+
+                    const annonceData1 = {
+                        annee: {{ annonce.annee }},
+                        kilometrage: {{ annonce.kilometrage }},
+                        prix: {{ annonce.prix }},
+                        puissance: {{ annonce.puissance }},
+                        stockageCoffre: {{ annonce.stockageCoffre }},
+                        poidsTotal: {{ annonce.poidsTotal }},
+                    };
+
+                    const annonceData2 = {
+                        annee: {{ annonce2.annee }},
+                        kilometrage: {{ annonce2.kilometrage }},
+                        prix: {{ annonce2.prix }},
+                        puissance: {{ annonce2.puissance }},
+                        stockageCoffre: {{ annonce2.stockageCoffre }},
+                        poidsTotal: {{ annonce2.poidsTotal }},
+                    };
+
+                    const currentYear = new Date().getFullYear();
+                    const age1 = currentYear - annonceData1.annee;
+                    const age2 = currentYear - annonceData2.annee;
+
+                    const minKilometrage = Math.min(annonceData1.kilometrage, annonceData2.kilometrage) - 10000;
+                    const maxKilometrage = Math.max(annonceData1.kilometrage, annonceData2.kilometrage) + 10000;
+
+                    const minPrix = Math.min(annonceData1.prix, annonceData2.prix) - 5000;
+                    const maxPrix = Math.max(annonceData1.prix, annonceData2.prix) + 5000;
+
+                    const minPuissance = Math.min(annonceData1.puissance, annonceData2.puissance) - 100;
+                    const maxPuissance = Math.max(annonceData1.puissance, annonceData2.puissance) + 100;
+
+                    const minStockageCoffre = Math.min(annonceData1.stockageCoffre, annonceData2.stockageCoffre) - 100;
+                    const maxstockageCoffre = Math.max(annonceData1.stockageCoffre, annonceData2.stockageCoffre) + 100;
+
+                    const minpoidsTotal = Math.min(annonceData1.poidsTotal, annonceData2.poidsTotal) - 100;
+                    const maxpoidsTotal = Math.max(annonceData1.poidsTotal, annonceData2.poidsTotal) + 100;
+
+                    const minAge = Math.min(age1, age2) - 3;
+                    const maxAge = Math.max(age1, age2) + 3;
+
+                    const ranges = {
+                        kilometrage: {min: minKilometrage, max: maxKilometrage},
+                        prix: {min: minPrix, max: maxPrix},
+                        puissance: {min: minPuissance, max: maxPuissance},
+                        stockageCoffre: {min: minStockageCoffre, max: maxstockageCoffre},
+                        poidsTotal: {min: minpoidsTotal, max: maxpoidsTotal},
+                        age: {min: minAge, max: maxAge}
+                    };
+
+                    function normalize(value, range, reverse = false) {
+                        if (reverse) {
+                            return 1 - (value - range.min) / (range.max - range.min);
+                        }
+                        return (value - range.min) / (range.max - range.min);
+                    }
+
+                    // Créez le graphique en toile d'araignée avec les données souhaitées
+                    const myRadarChart = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Kilométrage', 'Prix', 'Puissance', 'Stockage coffre', 'Poids Total', 'Âge'],
+                            datasets: [{
+                                label: '{{ annonce.nomVoiture }}',
+                                data: [
+                                    normalize(annonceData1.kilometrage, ranges.kilometrage),
+                                    normalize(annonceData1.prix, ranges.prix),
+                                    normalize(annonceData1.puissance, ranges.puissance),
+                                    normalize(annonceData1.stockageCoffre, ranges.stockageCoffre),
+                                    normalize(annonceData1.poidsTotal, ranges.poidsTotal),
+                                    normalize(age1, ranges.age)
+                                ],
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: '{{ annonce2.nomVoiture }}',
+                                data: [
+                                    normalize(annonceData2.kilometrage, ranges.kilometrage),
+                                    normalize(annonceData2.prix, ranges.prix),
+                                    normalize(annonceData2.puissance, ranges.puissance),
+                                    normalize(annonceData2.stockageCoffre, ranges.stockageCoffre),
+                                    normalize(annonceData2.poidsTotal, ranges.poidsTotal),
+                                    normalize(age2, ranges.age)
+                                ],
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: false,
+                            scales: {
+                                r: {
+                                    ticks: {
+                                        beginAtZero: true,
+                                        maxTicksLimit: 6,
+                                        precision: 0,
+                                        callback: function (value, index, values) {
+                                            if (value === 1) {
+                                                return ''; // Retournez une chaîne vide pour ne pas afficher l'étiquette
+                                            } else {
+                                                return value;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                    });
+                </script>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

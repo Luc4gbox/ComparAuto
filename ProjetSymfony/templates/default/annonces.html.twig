@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="mes-annonces divBody">
+        <h1>Mes annonces</h1>
+
+        <div class="annonces-container">
+            {% for annonce in annonces %}
+
+                <div class="annonce" data-id="{{ annonce.id }}">
+                    <h3>{{ annonce.titre }}</h3>
+                    <p>{{ annonce.prix == annonce.prix|round ? annonce.prix|round : annonce.prix|format('%.2f') }} €</p>
+                    <p>Mise en ligne le : {{ annonce.createdAt|date('d/m/Y') }}</p>
+                    <img src="{{ asset('images/annonces/' ~ annonce.image) }}" alt="{{ annonce.nomVoiture }}"/>
+                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">Modifier l'annonce</a>
+                </div>
+            {% else %}
+                <p class="erreur">Vous n'avez pas encore d'annonce.</p>
+            {% endfor %}
+        </div>
+
+        <a href="{{ path('app_annonce_new') }}" class="btn btn-primary btn-add-annonce">Ajouter une annonce</a>
+    </div>
+{% endblock %}

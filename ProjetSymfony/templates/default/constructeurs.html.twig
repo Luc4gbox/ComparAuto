@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <h1>Liste des constructeurs automobiles</h1>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Pays d'origine</th>
+                <th>Date de fondation</th>
+                <th>Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in constructeurs %}
+            <tr>
+                <th>{{ c.nom }}</th>
+                <th>{{ c.pays}} </th>
+                <th>{{ c.getDateFondation().format('d/m/Y')}} </th>
+                <th><img src="{{ asset('images/constructeur/'~c.logo) }}" alt="logo" width="100" height="auto"></th>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    
+
+{% endblock %}

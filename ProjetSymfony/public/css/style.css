@@ -1,0 +1,790 @@
+/*Styles généraux */
+html {
+    font-family : Arial;
+}
+
+.divBody{
+    margin: 0 5% 0 5%;
+}
+
+/* Styles généraux pour le header */
+header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family : Arial;
+    border-bottom: lightgray 1px solid;
+    margin-bottom: 30px;
+    position: fixed;
+    width: 100%;
+}
+
+header h1 {
+    margin-left: 10px;
+    font-size: 52px;
+    color: #3984DE;
+    font-weight: bold;
+}
+
+.debutHeader {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    margin-left: 5%;
+}
+
+.finHeader{
+    margin-left: 40px;
+    margin-right: 5%;
+    display: flex;
+    gap: 10px;
+}
+
+.finHeader a {
+    color: #3984DE;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+header h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.alert {
+    color: red;
+}
+
+/* Styles pour les liens de connexion et d'inscription */
+
+header a {
+    font-size: 24px;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+.identifier{
+    display: flex;
+    justify-content: space-around;
+    color: #3984DE;
+    font-size: 20px;
+    align-items: center;
+}
+
+.identifier a {
+    font-size: 20px;
+}
+
+.identifier p {
+    margin-right: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    align-items: center;
+}
+
+/* Style pour le formulaire de recherche*/
+
+.search-form {
+    display: flex;
+    background-color: #3984DE;
+    color: white;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 5px;
+}
+
+.search-form input[type="text"] {
+    font-size: 30px;
+    background-color: #3984DE;
+    color: #FFFFFF;
+    border: none;
+    width: 200px;
+}
+
+.search-form input[type="text"]:focus {
+    outline: none;
+    box-shadow: none;
+    transform: none;
+}
+
+.search-form button {
+    padding: 5px;
+    background-color: #3984DE;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.search-form button span {
+    vertical-align: middle;
+    font-size: 30px;
+}
+
+.addannoce {
+    background-color: #F8DE9B;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+.addannoce span {
+    vertical-align: middle;
+    font-size: 36px;
+}
+
+.titreIndex {
+    padding-top: 120px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.Api {
+    background-color: #3984DE;
+    border: none;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form-recherche {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+}
+
+.form-recherche input[type="text"],
+.form-recherche select,
+.form-recherche input[type="number"] {
+    flex: 1 1 auto;
+    max-width: 100%;
+    margin-bottom: 10px;
+    font-size: 25px;
+    background-color: #F4F6F7;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #8C8C8C;
+}
+
+.form-recherche select {
+    color: #8C8C8C;
+}
+
+.form-recherche label {
+    margin-right: 5px;
+}
+
+.form-recherche button {
+    background-color: #3984DE;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.filtrePrix label{
+    color: #8C8C8C;
+    font-size: 25px;
+}
+
+.filtrePrix input {
+    width: 120px;
+}
+
+.form-recherche .boutonFormRecherche {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.derniereAnnonce span {
+    vertical-align: middle;
+}
+
+.addannoce2 {
+    background-color: #F8DE9B;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 36px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    width: 380px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.addannoce2 span {
+    vertical-align: middle;
+    font-size: 36px;
+    padding-left: 5px;
+}
+
+.derniereAnnonce {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 5px 5px 30px 5px;
+}
+
+.derniereAnnonce .material-icons {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+
+/* Annonce */
+
+.annonces-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.annonce {
+    background-color: #ADD8E6;
+    border: 1px solid #000;
+    padding: 20px;
+    margin-left: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.annonce h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.annonce img {
+    width: 250px;
+    height: 175px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.annonce a {
+    text-decoration : none;
+    color : white;
+    background-color: #3984DE;
+    border-radius: 10px;
+    padding: 10px;
+    width: 230px;
+}
+
+/* Styles pour la page login */
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.form-login {
+    background-color: #f4f6f7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.login h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-login label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-login input {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-login button {
+    background-color: #3984de;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Style page d'inscription */
+
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.form-register {
+    background-color: #f4f6f7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.register h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-register label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-register input {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-register button {
+    background-color: #3984de;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Styles page profil */
+
+.profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    padding-top: 150px;
+}
+
+.profil-content {
+    background-color: #f4f6f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.profil h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profil p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.profil a {
+    background-color: #3984de;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Styles edit profil */
+
+.register-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 140px;
+}
+
+.edit-btn {
+    text-decoration: none;
+    display: inline-block;
+    background-color: #3984de;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Style page mes annonces */
+
+.mes-annonces {
+    margin-bottom: 50px;
+}
+
+.mes-annonces h1 {
+    padding-top: 120px;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.mes-annonces .btn-add-annonce {
+    text-decoration : none;
+    color : white;
+    font-size: 20px;
+    background-color: #3984DE;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    width: 230px;
+}
+
+/* Style page ajouter annonce */
+
+.marge{
+    padding-top: 130px;
+}
+
+.new-annonce {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+    background-color: #f4f6f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.new-annonce h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.back-btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 5px 10px;
+    font-size: 20px;
+    background-color: #F8DE9B;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-right: 7px;
+}
+
+.form-row label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.new-annonce .form-input,.form-select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+/* Style page une-annonce */
+
+.une-annonce {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    background-color: #f4f6f7;
+}
+
+.annonce-content {
+    flex: 2 1 50%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.annonce-content h1 {
+    text-align: center;
+    font-size: 35px;
+    font-width: bold;
+    margin-bottom: 20px;
+}
+
+.annonce-content p {
+    margin-bottom: 10px;
+}
+
+.annonce-image {
+    flex: 1 1 50%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.annonce-image img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-retour {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Style page comparateur */
+
+.comparateur .annonces-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.comparateur .comparator-container {
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    gap: 20px;
+    justify-content: center;
+}
+
+.comparateur .annonce-1, .annonce-2 {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 35%;
+}
+
+.comparateur .annonce_ {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f6f7;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.comparateur .annonce-info {
+    flex: 1 1 50%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.comparateur .annonce-info h3{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.comparateur .annonce-info p{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.comparateur .annonce-image {
+    flex: 1 1 50%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.comparateur .annonce-image img {
+    width: 250px;
+    height: 175px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.comparateur .form-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.comparateur .form-container {
+    display: inline-block;
+}
+
+.comparateur .form-container input,
+.comparateur .form-container datalist,
+.comparateur .form-container button {
+    font-size: 16px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.comparateur .form-container button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.comparateur .form-container button:hover {
+    background-color: #3984DE;
+}
+
+.comparateur .graph-container {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.comparateur #comparateur {
+    width: 500px;
+    height: 500px;
+    margin-bottom: 50px;
+}
+
+.comparateur .graph-container .annonce-info {
+    margin: 30px 40px 0 40px;
+    flex: 1;
+    max-width: 35%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+/* Style pour la page recherche */
+
+.recherche h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.recherche {
+    margin: 0 5%;
+}
